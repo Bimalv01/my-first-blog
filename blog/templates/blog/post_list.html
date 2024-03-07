@@ -1,3 +1,4 @@
+{% extends 'blog/base.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -15,12 +16,16 @@
             </div>
         </header>
 
+        {% block content %}
         {% for post in posts %}
-        <article class="post" style="padding-left:50px;">
-            <time>published: {{ post.published_date }}</time>
-            <h2><a href="">{{ post.title }}</a></h2>
-            <p>{{ post.text|linebreaksbr }}</p>
-        </article>
+            <article class="post">
+                <time class="date">
+                    {{ post.published_date }}
+                </time>
+                <h2><a href="">{{ post.title }}</a></h2>
+                <p>{{ post.text|linebreaksbr }}</p>
+            </article>
         {% endfor %}
+    {% endblock %}
     </body>
 </html>
