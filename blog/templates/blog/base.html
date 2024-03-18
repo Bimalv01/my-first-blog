@@ -10,13 +10,13 @@
     <body>
         <header class="page-header">
           <div class="container"> 
-            {% comment %} {% if user.is_authenticated %} {% endcomment %}
+            {% if user.is_authenticated %} 
             <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>add</a>
             <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span>draft</a>
             <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
-        {% comment %} {% else %} {% endcomment %}
+        {% else %} 
             <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
-        {% comment %} {% endif %} {% endcomment %}
+        {% endif %} 
               <h1><a href="/">Django Girls Blog</a></h1>
           </div>
         </header>

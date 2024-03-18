@@ -3,13 +3,12 @@
 {% block content %}
     <article class="post">
         <aside class="actions">
-            {% comment %} {% if user.is_authenticated %}  {% endcomment %}
+           {% if user.is_authenticated %}
             <a class="btn btn-secondary" href="{% url 'post_edit' pk=post.pk %}">
               Edit
             </a>
             <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span>remove</a>
-       {% comment %} {% endif %} {% endcomment %}
-       {% comment %} <button id="download-btn">Download PDF</button> {% endcomment %}
+    {% endif %} 
         </aside>
         {% if post.published_date %}
     <div class="date">
