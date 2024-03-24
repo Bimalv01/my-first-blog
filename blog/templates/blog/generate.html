@@ -1,0 +1,30 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+{%load static%}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Blog Post</title>
+
+    <link rel="stylesheet" href="{% static 'css/gen.css' %}">
+
+</head>
+<body>
+    <h1>Generate Blog Post</h1>
+    <form method="post">
+        {% csrf_token %}
+        <h2><label for="subject">Enter Subject:</label></h2>
+        <input type="text" id="subject" name="subject">
+        <button type="submit">Generate</button>
+        <!-- Add a button to save the post -->
+    </form>
+    <hr>
+    {% if generated_content %}
+        <h2>Generated Content:</h2>
+        <p>{{ generated_content }}</p>
+    {% endif %}
+    <center><h3>Verify the content before publishing!</h3></center>
+
+</body>
+{% endblock %}

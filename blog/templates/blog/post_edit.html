@@ -1,9 +1,26 @@
 {% extends 'blog/base.html' %}
 
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-F5I7qZBhcKz7FK6tWkUf5T9RYuB5MD+5sZtqXzB5sI+qDrqrP5Q+VMKBw2dp4x8v" crossorigin="anonymous">
+{% endblock %}
+
 {% block content %}
     <h2>New post</h2>
+    <a href="{% url 'new_post'%}" title="AI for generating blogs" ><svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35px" height="35px" viewBox="0 0 548.29 548.291" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M486.205,196.116h-13.166V132.59c0-0.399-0.062-0.795-0.109-1.2c-0.021-2.52-0.828-4.997-2.556-6.96L364.656,3.677 c-0.031-0.031-0.064-0.044-0.085-0.075c-0.629-0.704-1.364-1.29-2.141-1.796c-0.231-0.154-0.462-0.283-0.704-0.419 c-0.672-0.365-1.386-0.672-2.121-0.893c-0.199-0.052-0.377-0.134-0.576-0.186C358.229,0.118,357.4,0,356.562,0H96.757 C84.893,0,75.256,9.649,75.256,21.502v174.613H62.093c-16.972,0-30.733,13.756-30.733,30.733v159.812 c0,16.961,13.761,30.731,30.733,30.731h13.163V526.79c0,11.854,9.637,21.501,21.501,21.501h354.777 c11.853,0,21.502-9.647,21.502-21.501V417.392H486.2c16.966,0,30.729-13.771,30.729-30.731V226.849 C516.93,209.872,503.177,196.116,486.205,196.116z M451.534,520.962H96.757v-103.57h354.777V520.962z M158.811,382.609 l50.184-164.228h48.722l50.927,164.228h-39.947l-12.682-42.158h-47.02l-11.695,42.158H158.811z M330.566,382.609V218.381h37.292 v164.228H330.566z M451.534,196.116H96.757V21.502h249.053v110.006c0,5.943,4.818,10.751,10.751,10.751h94.973V196.116z"></path> <path d="M240.426,277.832c-2.919-9.744-5.843-21.93-8.284-31.676h-0.488c-2.431,9.746-4.872,22.174-7.549,31.676l-9.745,34.846 h36.305L240.426,277.832z"></path> </g> </g></svg></a>
     <form method="POST" class="post-form">{% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="save btn btn-secondary">Save</button>
+        <button type="submit" class="save btn btn-secondary" title="save">
+            <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 6C4 4.89543 4.89543 4 6 4H12H14.1716C14.702 4 15.2107 4.21071 15.5858 4.58579L19.4142 8.41421C19.7893 8.78929 20 9.29799 20 9.82843V12V18C20 19.1046 19.1046 20 18 20H6C4.89543 20 4 19.1046 4 18V6Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M8 4H13V7C13 7.55228 12.5523 8 12 8H9C8.44772 8 8 7.55228 8 7V4Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M7 15C7 13.8954 7.89543 13 9 13H15C16.1046 13 17 13.8954 17 15V20H7V15Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+        </button>
     </form>
+
+    <!-- JavaScript code -->
+    <script>
+        // Add an event listener to the button
+        document.querySelector('.save').addEventListener('click', function() {
+            // Display a pop-up message
+            alert('Post saved successfully!');
+        });
+    </script>
 {% endblock %}

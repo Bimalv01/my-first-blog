@@ -1,32 +1,49 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Django Girls blog</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext">
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-    </head>
-    <body>
-        <header class="page-header">
-          <div class="container"> 
+<head>
+    <title>Django Girls blog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-F5I7qZBhcKz7FK6tWkUf5T9RYuB5MD+5sZtqXzB5sI+qDrqrP5Q+VMKBw2dp4x8v" crossorigin="anonymous">
+</head>
+<body>
+    <header class="page-header">
+        <div class="container"> 
             {% if user.is_authenticated %} 
-            <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span>add</a>
-            <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span>draft</a>
-            <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
-        {% else %} 
-            <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
-        {% endif %} 
-              <h1><a href="/">Django Girls Blog</a></h1>
-          </div>
-        </header>
-        <main class="container">
-            <div class="row">
-                <div class="col">
+            <a href="{% url 'post_new' %}" class="top-menu" title="Add post"><svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M3 6C3 4.34315 4.34315 3 6 3H14C15.6569 3 17 4.34315 17 6V14C17 15.6569 15.6569 17 14 17H6C4.34315 17 3 15.6569 3 14V6Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M21 7V18C21 19.6569 19.6569 21 18 21H7" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M10 10V7M10 10V13M10 10H13M10 10H7" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+              </a>
+            <a href="{% url 'post_draft_list' %}" class="top-menu" title="Drafts"><svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px" height="40px" viewBox="0 0 31.854 31.854" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M15.94,11.735c0,0.588-0.476,1.064-1.065,1.064H5.298c-0.588,0-1.065-0.476-1.065-1.064c0-0.587,0.477-1.063,1.065-1.063 h9.577C15.465,10.672,15.94,11.148,15.94,11.735z M21.52,11.087l5.342,4.791L15.535,28.505l-5.34-4.791L21.52,11.087z M20.008,16.188l-0.033-0.029c-0.127-0.114-0.293-0.172-0.461-0.163c-0.168,0.009-0.328,0.085-0.439,0.211l-6.079,6.776 c-0.253,0.281-0.229,0.713,0.052,0.965c0.126,0.115,0.291,0.174,0.461,0.164c0.168-0.01,0.327-0.086,0.44-0.213l6.108-6.81 C20.293,16.828,20.27,16.423,20.008,16.188z M21.27,13.751l-0.301,0.336c-0.111,0.126-0.17,0.292-0.162,0.461 c0.01,0.169,0.086,0.328,0.211,0.441l0.035,0.031c0.127,0.113,0.293,0.171,0.461,0.162c0.17-0.009,0.328-0.085,0.44-0.211 l0.728-0.811l-0.51-0.457C21.91,13.467,21.506,13.489,21.27,13.751z M22.035,10.51l5.341,4.791l1.312-1.462l-5.34-4.791 L22.035,10.51z M31.047,11.21l-1.877,2.093l-5.341-4.79l1.88-2.093c0.247-0.28,0.6-0.448,0.975-0.468 c0.375-0.021,0.742,0.109,1.021,0.359l3.234,2.903C31.52,9.735,31.569,10.629,31.047,11.21z M29.996,10.264l-3.233-2.902 l-0.937,1.042l3.233,2.903L29.996,10.264z M9.557,24.428l5.339,4.791l-6.31,2.586c-0.243,0.098-0.521,0.051-0.716-0.125 c-0.196-0.177-0.273-0.447-0.201-0.699L9.557,24.428z M10.045,26.13l-0.722,2.507l1.411,1.268l2.412-0.986L10.045,26.13z M8.215,24.285l-0.623,2.162H2.859c-1.332,0-2.413-1.08-2.413-2.412V6.493c0-1.332,1.08-2.413,2.413-2.413h2.94V3.906 c0-0.492,0.399-0.89,0.89-0.89h0.74C7.414,2.909,7.406,2.781,7.406,2.661C7.406,1.194,8.599,0,10.067,0 c1.469,0,2.661,1.194,2.661,2.661c0,0.12-0.01,0.248-0.023,0.354h0.749c0.492,0,0.89,0.399,0.89,0.89v0.174h2.87 c1.332,0,2.412,1.081,2.412,2.413v4.63l-2.128,2.372V7.506c0-0.699-0.565-1.265-1.264-1.265h-1.891v1.201 c0,0.491-0.399,0.89-0.89,0.89H6.69c-0.492,0-0.89-0.399-0.89-0.89V6.241H3.874c-0.699,0-1.265,0.567-1.265,1.265V23.02 c0,0.701,0.567,1.266,1.265,1.266H8.215z M9.003,2.661c0,0.124,0.023,0.248,0.061,0.355h2.005c0.04-0.107,0.062-0.23,0.062-0.355 c0-0.587-0.477-1.065-1.064-1.065C9.479,1.596,9.003,2.074,9.003,2.661z M14.949,16.341l0.991-1.105 c-0.014-0.576-0.484-1.054-1.064-1.054H5.298c-0.588,0-1.065,0.493-1.065,1.082c0,0.587,0.477,1.082,1.065,1.082h9.577 C14.9,16.344,14.925,16.342,14.949,16.341z M4.233,18.791c0,0.588,0.477,1.062,1.065,1.062H11.8l1.907-2.127H5.298 C4.71,17.727,4.233,18.203,4.233,18.791z"></path> </g> </g></svg></a>
+            <a href="{% url 'logout' %}" class="top-menu" title="Logout"><svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12.9999 2C10.2385 2 7.99991 4.23858 7.99991 7C7.99991 7.55228 8.44762 8 8.99991 8C9.55219 8 9.99991 7.55228 9.99991 7C9.99991 5.34315 11.3431 4 12.9999 4H16.9999C18.6568 4 19.9999 5.34315 19.9999 7V17C19.9999 18.6569 18.6568 20 16.9999 20H12.9999C11.3431 20 9.99991 18.6569 9.99991 17C9.99991 16.4477 9.55219 16 8.99991 16C8.44762 16 7.99991 16.4477 7.99991 17C7.99991 19.7614 10.2385 22 12.9999 22H16.9999C19.7613 22 21.9999 19.7614 21.9999 17V7C21.9999 4.23858 19.7613 2 16.9999 2H12.9999Z" fill="#000000"></path> <path d="M13.9999 11C14.5522 11 14.9999 11.4477 14.9999 12C14.9999 12.5523 14.5522 13 13.9999 13V11Z" fill="#000000"></path> <path d="M5.71783 11C5.80685 10.8902 5.89214 10.7837 5.97282 10.682C6.21831 10.3723 6.42615 10.1004 6.57291 9.90549C6.64636 9.80795 6.70468 9.72946 6.74495 9.67492L6.79152 9.61162L6.804 9.59454L6.80842 9.58848C6.80846 9.58842 6.80892 9.58778 5.99991 9L6.80842 9.58848C7.13304 9.14167 7.0345 8.51561 6.58769 8.19098C6.14091 7.86637 5.51558 7.9654 5.19094 8.41215L5.18812 8.41602L5.17788 8.43002L5.13612 8.48679C5.09918 8.53682 5.04456 8.61033 4.97516 8.7025C4.83623 8.88702 4.63874 9.14542 4.40567 9.43937C3.93443 10.0337 3.33759 10.7481 2.7928 11.2929L2.08569 12L2.7928 12.7071C3.33759 13.2519 3.93443 13.9663 4.40567 14.5606C4.63874 14.8546 4.83623 15.113 4.97516 15.2975C5.04456 15.3897 5.09918 15.4632 5.13612 15.5132L5.17788 15.57L5.18812 15.584L5.19045 15.5872C5.51509 16.0339 6.14091 16.1336 6.58769 15.809C7.0345 15.4844 7.13355 14.859 6.80892 14.4122L5.99991 15C6.80892 14.4122 6.80897 14.4123 6.80892 14.4122L6.804 14.4055L6.79152 14.3884L6.74495 14.3251C6.70468 14.2705 6.64636 14.1921 6.57291 14.0945C6.42615 13.8996 6.21831 13.6277 5.97282 13.318C5.89214 13.2163 5.80685 13.1098 5.71783 13H13.9999V11H5.71783Z" fill="#000000"></path> </g></svg></a>
+            <p  id="clock">00:00:00</p>
+            {% else %} 
+            <a href="{% url 'login' %}" class="top-menu" title="Login"><svg fill="#000000" width="40px" height="40px" viewBox="0 0 36 36" version="1.1" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M30.61,24.52a17.16,17.16,0,0,0-25.22,0,1.51,1.51,0,0,0-.39,1v6A1.5,1.5,0,0,0,6.5,33h23A1.5,1.5,0,0,0,31,31.5v-6A1.51,1.51,0,0,0,30.61,24.52Z" class="clr-i-solid clr-i-solid-path-1"></path><circle cx="18" cy="10" r="7" class="clr-i-solid clr-i-solid-path-2"></circle> <rect x="0" y="0" width="36" height="36" fill-opacity="0"></rect> </g></svg>
+              </a>
+            {% endif %} 
+            <h1><a href="/">Django Girls Blog</a></h1>
+        </div>
+    </header>
+    <main class="container">
+        <div class="row">
+            <div class="col">
                 {% block content %}
                 {% endblock %}
-                </div>
             </div>
-        </main>
-    </body>
+        </div>
+    </main>
+    <script>
+        function displayTime() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+          
+            const timeString = `${hours}:${minutes}:${seconds}`;
+            document.getElementById("clock").innerHTML = timeString;
+          }
+          
+          setInterval(displayTime, 1000);</script>
+
+</body>
 </html>

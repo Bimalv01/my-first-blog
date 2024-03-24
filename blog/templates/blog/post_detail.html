@@ -4,10 +4,11 @@
     <article class="post">
         <aside class="actions">
            {% if user.is_authenticated %}
-            <a class="btn btn-secondary" href="{% url 'post_edit' pk=post.pk %}">
-              Edit
+           {% comment %} btn btn-secondary {% endcomment %}
+            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}" title="Edit">
+                <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 5L15 5" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M4 8H15" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M4 11H11" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M18.4563 13.5423L13.9268 18.0719C13.6476 18.3511 13.292 18.5414 12.9048 18.6188L10.8153 19.0367L11.2332 16.9472C11.3106 16.5601 11.5009 16.2045 11.7801 15.9253L16.3096 11.3957M18.4563 13.5423L19.585 12.4135C19.9755 12.023 19.9755 11.3898 19.585 10.9993L18.8526 10.2669C18.4621 9.8764 17.8289 9.8764 17.4384 10.2669L16.3096 11.3957M18.4563 13.5423L16.3096 11.3957" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
             </a>
-            <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span>remove</a>
+            <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}" title="remove"><span class="glyphicon glyphicon-remove"></span><svg fill="#000000" width="30px" height="30px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>remove</title> <path d="M11.188 4.781c6.188 0 11.219 5.031 11.219 11.219s-5.031 11.188-11.219 11.188-11.188-5-11.188-11.188 5-11.219 11.188-11.219zM11.25 17.625l3.563 3.594c0.438 0.438 1.156 0.438 1.594 0 0.406-0.406 0.406-1.125 0-1.563l-3.563-3.594 3.563-3.594c0.406-0.438 0.406-1.156 0-1.563-0.438-0.438-1.156-0.438-1.594 0l-3.563 3.594-3.563-3.594c-0.438-0.438-1.156-0.438-1.594 0-0.406 0.406-0.406 1.125 0 1.563l3.563 3.594-3.563 3.594c-0.406 0.438-0.406 1.156 0 1.563 0.438 0.438 1.156 0.438 1.594 0z"></path> </g></svg></a>
     {% endif %} 
         </aside>
         {% if post.published_date %}
@@ -15,24 +16,24 @@
         {{ post.published_date }}
     </div>
 {% else %}
-    <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+    <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}" title="Publish"><svg width="50px" height="50px" viewBox="-21.6 -21.6 91.20 91.20" xmlns="http://www.w3.org/2000/svg" fill="#000000" stroke="#000000" stroke-width="2.544"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><defs><style>.a{fill:none;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;}</style></defs><path class="a" d="M14.222,26.14,8.7452,23.0435a.6471.6471,0,0,1,.0261-1.1405l23.312-11.808L28.0625,33.5082a.7055.7055,0,0,1-1.0631.4827l-8.1461-4.9752-3.7619,4.7148a.5961.5961,0,0,1-1.0619-.3877Z"></path><polyline class="a" points="14.222 26.14 32.083 10.095 18.853 29.016"></polyline><line class="a" x1="38.8357" y1="40.73" x2="38.8357" y2="33.575"></line><path class="a" d="M38.8357,45.5c7.065-2.715,6.66-8.154,6.66-11.4V31.64a25.2144,25.2144,0,0,0-6.66-1.14,25.2144,25.2144,0,0,0-6.66,1.14V34.1C32.1757,37.346,31.7707,42.785,38.8357,45.5Z"></path><line class="a" x1="35.2582" y1="37.1525" x2="42.4132" y2="37.1525"></line><path class="a" d="M34.54,42.7435a21.5027,21.5027,0,1,1,10.9586-18.97"></path><path class="a" d="M45.5,23.9456a21.46,21.46,0,0,1-1.2654,7.3388"></path></g></svg></a>
 {% endif %}
         <h2>{{ post.title }}</h2>
         <p>{{ post.text|linebreaksbr }}</p>
     </article>
     <hr>
-    <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+    <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}"><svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px" height="40px" viewBox="0 0 31.894 31.894" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M25.933,1.931H12.945c-3.26,0-5.927,2.692-5.927,5.952v0.145l2.397,0.028V7.883c0-1.926,1.604-3.555,3.53-3.555h12.987 c1.928,0,3.413,1.629,3.413,3.555v7c0,1.86-1.419,3.377-3.253,3.479l0.016,2.428c3.182-0.09,5.785-2.703,5.785-5.908v-7 C31.894,4.623,29.194,1.931,25.933,1.931z"></path> <path d="M20.169,9.999L4.384,9.817c-2.34-0.028-4.259,1.847-4.286,4.187L0,22.512c-0.028,2.338,1.848,4.259,4.187,4.283 l10.559,0.122l5.723,2.929c0.363,0.187,0.8,0.147,1.128-0.094c0.328-0.244,0.489-0.675,0.417-1.074l-0.309-1.724l0,0 c1.383,0,2.516-1.069,2.531-2.452l0.119-10.219C24.384,11.944,22.509,10.025,20.169,9.999z M18.226,22.01H6.095 c-0.669,0-1.213-0.528-1.213-1.198c0-0.671,0.543-1.199,1.213-1.199h12.13c0.672,0,1.215,0.528,1.215,1.199 C19.44,21.481,18.897,22.01,18.226,22.01z M18.226,17.216H6.095c-0.669,0-1.213-0.527-1.213-1.199 c0-0.671,0.543-1.199,1.213-1.199h12.13c0.672,0,1.215,0.528,1.215,1.199C19.44,16.688,18.897,17.216,18.226,17.216z"></path> </g> </g> </g></svg></a>
     {% for comment in post.comments.all %}
     {% if user.is_authenticated or comment.approved_comment %}
     <div class="comment">
         <div class="date">
             {{ comment.created_date }}
             {% if not comment.approved_comment %}
-                <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}">
-                  reject
+                <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}" onclick="return confirmRemove();">
+                    <svg fill="#000000" width="20px" height="20px" viewBox="0 0 200 200" data-name="Layer 1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title></title><path d="M100,15a85,85,0,1,0,85,85A84.93,84.93,0,0,0,100,15Zm0,150a65,65,0,1,1,65-65A64.87,64.87,0,0,1,100,165Z"></path><path d="M128.5,74a9.67,9.67,0,0,0-14,0L100,88.5l-14-14a9.9,9.9,0,0,0-14,14l14,14-14,14a9.9,9.9,0,0,0,14,14l14-14,14,14a9.9,9.9,0,0,0,14-14l-14-14,14-14A10.77,10.77,0,0,0,128.5,74Z"></path></g></svg>
                 </a>
                 <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}">
-                  Approve
+                    <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 31.963 31.963" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M31.453,9.17c0.372-0.439,0.554-1.011,0.501-1.585c-0.055-0.574-0.338-1.102-0.785-1.466l-3.811-3.084 c-0.92-0.744-2.27-0.602-3.014,0.317L12.675,17.773l-5.536-4.667c-1.054-0.889-2.61-0.822-3.585,0.151l-2.927,2.926 c-0.421,0.421-0.647,0.999-0.626,1.594c0.022,0.596,0.291,1.152,0.742,1.542l11.108,9.565c0.432,0.373,0.994,0.558,1.562,0.513 c0.568-0.044,1.096-0.312,1.465-0.747L31.453,9.17z"></path> </g> </g></svg>
                 </a>
             {% endif %}
         </div>
