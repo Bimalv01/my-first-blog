@@ -6,6 +6,7 @@
         <title>Django Girls blog</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <link rel="stylesheet" href="{% static 'css/search.css' %}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext">
 
     </head>
@@ -13,9 +14,24 @@
         <header class="page-header">
             <div class="container">
                 <h1><a href="/">Django Girls Blog</a></h1>
-            </div>           
+            </div>          
         </header>
-        {% block content %}       
+        {% block content %}
+
+        <center>
+            <form method="GET" action="{% url 'post_list' %}">
+                <input type="text" name="q" placeholder="Search by title">
+                <button class="btn btn-default" type="submit">
+                    <svg fill="#000000" width="25px" height="25px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.027 9.92L16 13.95 14 16l-4.075-3.976A6.465 6.465 0 0 1 6.5 13C2.91 13 0 10.083 0 6.5 0 2.91 2.917 0 6.5 0 10.09 0 13 2.917 13 6.5a6.463 6.463 0 0 1-.973 3.42zM1.997 6.452c0 2.48 2.014 4.5 4.5 4.5 2.48 0 4.5-2.015 4.5-4.5 0-2.48-2.015-4.5-4.5-4.5-2.48 0-4.5 2.014-4.5 4.5z" fill-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </form>
+        </center>
+    
+        {% if message %}
+            <p>{{ message }}</p>
+        {% else %}
         {% for post in posts %}        
             <article class="post">
                 <time class="date">
@@ -26,6 +42,7 @@
                 <a href="{% url 'post_detail' pk=post.pk %}"><svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15px" height="15px" viewBox="0 0 31.894 31.894" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M25.933,1.931H12.945c-3.26,0-5.927,2.692-5.927,5.952v0.145l2.397,0.028V7.883c0-1.926,1.604-3.555,3.53-3.555h12.987 c1.928,0,3.413,1.629,3.413,3.555v7c0,1.86-1.419,3.377-3.253,3.479l0.016,2.428c3.182-0.09,5.785-2.703,5.785-5.908v-7 C31.894,4.623,29.194,1.931,25.933,1.931z"></path> <path d="M20.169,9.999L4.384,9.817c-2.34-0.028-4.259,1.847-4.286,4.187L0,22.512c-0.028,2.338,1.848,4.259,4.187,4.283 l10.559,0.122l5.723,2.929c0.363,0.187,0.8,0.147,1.128-0.094c0.328-0.244,0.489-0.675,0.417-1.074l-0.309-1.724l0,0 c1.383,0,2.516-1.069,2.531-2.452l0.119-10.219C24.384,11.944,22.509,10.025,20.169,9.999z M18.226,22.01H6.095 c-0.669,0-1.213-0.528-1.213-1.198c0-0.671,0.543-1.199,1.213-1.199h12.13c0.672,0,1.215,0.528,1.215,1.199 C19.44,21.481,18.897,22.01,18.226,22.01z M18.226,17.216H6.095c-0.669,0-1.213-0.527-1.213-1.199 c0-0.671,0.543-1.199,1.213-1.199h12.13c0.672,0,1.215,0.528,1.215,1.199C19.44,16.688,18.897,17.216,18.226,17.216z"></path> </g> </g> </g></svg> : {{ post.approved_comments.count }}</a>
             </article>  
         {% endfor %}
+        {% endif %}
     {% endblock %} 
     </body>
 </html>
