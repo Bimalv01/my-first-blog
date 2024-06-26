@@ -103,7 +103,7 @@ def new_post(request):
         subject = request.POST.get('subject', '')
         if subject:
             # Configure the Generative AI with your API key
-            genai.configure(api_key="AIzaSyBzt4mhseJ5aaHQWe0Frs5WTXDJ8lkVr-s")
+            genai.configure(api_key="key")
 
             # Set up model generation configuration and safety settings
             generation_config = {
